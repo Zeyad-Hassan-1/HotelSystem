@@ -22,38 +22,44 @@ cd hotel-management
 ```bash
 gcc main.c Src/*.c -o hotel.exe -I Src/headerFiles
 ```
-Project Structure:
-hotel-management/
-├── Src/
-│   ├── headerFiles/       # Header files
-│   │   ├── colors.h      # Console color definitions
-│   │   ├── login.h       # Authentication headers
-│   │   ├── menu.h        # Menu system headers
-│   │   ├── reservations.h # Booking system headers
-│   │   ├── tracking.h    # Room tracking headers
-│   │   └── validation.h  # Input validation headers
-│   ├── login.c           # Authentication implementation
-│   ├── menu.c            # Menu system implementation
-│   ├── reservations.c    # Booking system implementation
-│   ├── tracking.c        # Room tracking implementation
-│   ├── editReservations.c # Booking modification implementation
-│   ├── check_out.c       # Check-out process implementation
-│   └── sorting.c         # Data sorting utilities
-├── output/               # Data storage
-│   ├── Reservations.txt  # Customer reservations
-│   ├── Room.txt         # Room information
-│   └── users.txt        # User credentials
-└── README.md
+
+## Project Structure
+
+📁 **hotel-management/**
+  ├─📁 **src/**
+  │  ├─📁 **headerFiles/**
+  │  │  ├─📄 colors.h        # Console color definitions and text styling
+  │  │  ├─📄 login.h         # User authentication and session management
+  │  │  ├─📄 menu.h          # Menu navigation and UI components
+  │  │  ├─📄 reservations.h  # Booking system core functionality 
+  │  │  ├─📄 tracking.h      # Room status and availability tracking
+  │  │  └─📄 validation.h    # Input validation and data verification
+  │  │
+  │  ├─📄 login.c            # Login system implementation
+  │  ├─📄 menu.c             # Menu system and navigation logic
+  │  ├─📄 reservations.c     # Room booking and reservation handling
+  │  ├─📄 tracking.c         # Room and booking status management
+  │  ├─📄 editReservations.c # Modification of existing bookings
+  │  ├─📄 check_out.c        # Check-out processing and billing
+  │  └─📄 sorting.c          # Data sorting and organization utilities
+  │
+  ├─📁 **output/**           # Data storage directory
+  │  ├─📄 Reservations.txt   # Customer booking records
+  │  ├─📄 Room.txt           # Room details and status
+  │  └─📄 users.txt          # User authentication data
+  │
+  └─📄 README.md             # Project documentation
+
 
 Features:
-*🔐 Secure login system
-*🏨 Room reservation management
-*✅ Check-in/check-out processing
-*📊 Room availability tracking
-*👥 Customer information management
-*🔄 Booking modifications
-*📝 Room category management
-*📈 Reporting system
+  1. 🔐 Secure login system
+  2. 🏨 Room reservation management
+  3. ✅ Check-in/check-out processing
+  4. 📊 Room availability tracking
+  5. 👥 Customer information management
+  6. 🔄 Booking modifications
+  7. 📝 Room category management
+  8. 📈 Reporting system
 
 Data Organization:
 Room.txt Format
