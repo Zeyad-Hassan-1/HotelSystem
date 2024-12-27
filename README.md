@@ -23,18 +23,34 @@ cd hotel-management
 gcc main.c Src/*.c -o hotel.exe -I Src/headerFiles
 ```
 
-<table>
-<tr>
-<td width="50%">
- 
-### Project Structure
-
-📁 hotel-management/ ├─📁 src/ │ ├─📁 headerFiles/ │ │ ├─📄 colors.h │ │ ├─📄 login.h │ │ ├─📄 menu.h │ │ ├─📄 reservations.h │ │ ├─📄 tracking.h │ │ └─📄 validation.h │ ├─📄 login.c │ ├─📄 menu.c │ ├─📄 reservations.c │ ├─📄 tracking.c │ ├─📄 editReservations.c │ ├─📄 check_out.c │ └─📄 sorting.c └─📁 output/
-
-</td>
-</tr>
-</table>
-
+## Project Structure
+```
+📁 **hotel-management/**
+  ├─📁 **src/**
+  │  ├─📁 **headerFiles/**
+  │  │  ├─📄 colors.h        # Console color definitions and text styling
+  │  │  ├─📄 login.h         # User authentication and session management
+  │  │  ├─📄 menu.h          # Menu navigation and UI components
+  │  │  ├─📄 reservations.h  # Booking system core functionality 
+  │  │  ├─📄 tracking.h      # Room status and availability tracking
+  │  │  └─📄 validation.h    # Input validation and data verification
+  │  │
+  │  ├─📄 login.c            # Login system implementation
+  │  ├─📄 menu.c             # Menu system and navigation logic
+  │  ├─📄 reservations.c     # Room booking and reservation handling
+  │  ├─📄 tracking.c         # Room and booking status management
+  │  ├─📄 editReservations.c # Modification of existing bookings
+  │  ├─📄 check_out.c        # Check-out processing and billing
+  │  └─📄 sorting.c          # Data sorting and organization utilities
+  │
+  ├─📁 **output/**           # Data storage directory
+  │  ├─📄 Reservations.txt   # Customer booking records
+  │  ├─📄 Room.txt           # Room details and status
+  │  └─📄 users.txt          # User authentication data
+  │
+  └─📄 README.md             # Project documentation
+```
+```
 Features:
   1. 🔐 Secure login system
   2. 🏨 Room reservation management
@@ -44,6 +60,7 @@ Features:
   6. 🔄 Booking modifications
   7. 📝 Room category management
   8. 📈 Reporting system
+```
 
 Data Organization:
 Room.txt Format
