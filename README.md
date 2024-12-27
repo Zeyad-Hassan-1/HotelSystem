@@ -33,7 +33,9 @@ gcc main.c Src/*.c -o hotel.exe -I Src/headerFiles
 
 </td>
 <td width="50%">
-
+</td>
+</tr>
+</table>
 
 Features:
   1. 🔐 Secure login system
