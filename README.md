@@ -32,8 +32,6 @@ gcc main.c Src/*.c -o hotel.exe -I Src/headerFiles
 📁 hotel-management/ ├─📁 src/ │ ├─📁 headerFiles/ │ │ ├─📄 colors.h │ │ ├─📄 login.h │ │ ├─📄 menu.h │ │ ├─📄 reservations.h │ │ ├─📄 tracking.h │ │ └─📄 validation.h │ ├─📄 login.c │ ├─📄 menu.c │ ├─📄 reservations.c │ ├─📄 tracking.c │ ├─📄 editReservations.c │ ├─📄 check_out.c │ └─📄 sorting.c └─📁 output/
 
 </td>
-<td width="50%">
-</td>
 </tr>
 </table>
 
