@@ -23,17 +23,16 @@ cd hotel-management
 gcc main.c Src/*.c -o hotel.exe -I Src/headerFiles
 ```
 
+<table>
+<tr>
+<td width="50%">
+ 
+### Project Structure
 
-## Project Structure  |  Data Format
-📁 **hotel-management/**            | **Room.txt:**
- ├─📁 **src/**                     | `RoomID Status Category Price`
- │ ├─📁 **headerFiles/**           | 
- │ │ ├─📄 colors.h                 | **Reservations.txt:**
- │ │ ├─📄 login.h                  | `ResID,RoomID,Status,Name,NatID`
- │ │ ├─📄 menu.h                   | 
- │ │ ├─📄 reservations.h           | **Users.txt:**
- │ │ ├─📄 tracking.h               | `Username Password`
- │ │ └─📄 validation.h             |
+📁 hotel-management/ ├─📁 src/ │ ├─📁 headerFiles/ │ │ ├─📄 colors.h │ │ ├─📄 login.h │ │ ├─📄 menu.h │ │ ├─📄 reservations.h │ │ ├─📄 tracking.h │ │ └─📄 validation.h │ ├─📄 login.c │ ├─📄 menu.c │ ├─📄 reservations.c │ ├─📄 tracking.c │ ├─📄 editReservations.c │ ├─📄 check_out.c │ └─📄 sorting.c └─📁 output/
+
+</td>
+<td width="50%">
 
 
 Features:
