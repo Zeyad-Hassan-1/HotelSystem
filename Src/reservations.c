@@ -113,11 +113,18 @@ int RoomReservation(int stat, long resID, char *nId)
     } while (categoryChoice < 1 || categoryChoice > 3);
 
     FILE *fptr = fopen("output/reservations.txt", "a");
+    if (fptr == NULL)
+    {
+        printf("Error: Could not open reservations file.\n");
+        return 0;
+    }
+    
     FILE *roomFile = fopen("output/Room.txt", "r");
     if (roomFile == NULL)
     {
-        printf("Error: Could not open file.\n");
-        exit(0);
+        printf("Error: Could not open room file.\n");
+        fclose(fptr);
+        return 0;
     }
 
     char rooms[200];

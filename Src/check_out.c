@@ -83,6 +83,12 @@ void checkOut()
 
         if (customers.room_id == room_number && strcmp(customers.status, "confirmed") == 0)
         {
+            printf("Do you want to check out?\n");
+            printf("Press 'c' to cancel.... or any other key to confirm\n");
+            if(!save()){
+                fclose(reservationFile);
+                return;
+            }
             found = 1;
             no_of_nights = customers.numberOfnights;
             changeRoomStat(room_number);

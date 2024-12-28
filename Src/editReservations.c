@@ -124,8 +124,12 @@ void cancel(long id, int edit)
     char reservation[200];
     Customer customers[200];
     int i = 0;
-    printf("Do you want to confirm the cancellation?\n");
-    printf("Press 'c' to cancel or any other key to save\n");
+    if (!edit)
+    {
+        printf("Do you want to confirm the cancellation?\n");
+        printf("Press 'c' to cancel or any other key to save\n");
+    }
+    
     if (!save())
     {
         fclose(res);
