@@ -130,7 +130,7 @@ void cancel(long id, int edit)
         printf("Press 'c' to cancel or any other key to save\n");
     }
     
-    if (!save())
+    if (!save()&&!edit)
     {
         fclose(res);
         return;
