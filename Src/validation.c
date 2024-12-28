@@ -34,7 +34,24 @@ int is_valid_date(int day, int month, int year)
     // Basic date validation
     if (month < 1 || month > 12)
         return 0;
-    if (day < 1 || day > 30)
+    int days_in_month;
+    switch (month) {
+        case 2:  // February
+            // Check for leap year
+            if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0){
+                days_in_month = 29;
+            } else {
+                days_in_month = 28;
+            }
+            break;
+        case 4: case 6: case 9: case 11:  // Months with 30 days
+            days_in_month = 30;
+            break;
+        default:  // Months with 31 days
+            days_in_month = 31;
+            break;
+    }
+    if (day < 1 || day > days_in_month)
         return 0;
 
     return 1;

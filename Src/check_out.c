@@ -52,8 +52,7 @@ void changereservation(int roomId)
     fclose(reservationFile);
 }
 
-void checkOut()
-{
+void checkOut(){
     system("cls");
 
     FILE *reservationFile, *roomFile;
