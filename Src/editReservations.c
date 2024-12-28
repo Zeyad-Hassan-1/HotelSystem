@@ -44,9 +44,9 @@ Customer ViewCustomerDetails()
         if (id == csv.reservationID || id == csv.room_id)
         {
             textcolor(LIGHTBLUE);
-            printf("Name : %s \n Phone Number: %s \n Email: %s \n National Id: %s \n Number of Nights: %d \n Check in date : %02d %02d %02d\n\n", 
+            printf("Name : %s \n Phone Number: %s \n Email: %s \n National Id: %s \n Number of Nights: %d \n Check in date : %02d %02d %02d\n\n",
                    csv.name, csv.phone, csv.email, csv.nationalId, csv.numberOfnights, csv.day, csv.month, csv.year);
-                   
+
             textcolor(LIGHTGRAY);
             fclose(file);
             return csv;
@@ -129,13 +129,15 @@ void cancel(long id, int edit)
         printf("Do you want to confirm the cancellation?\n");
         printf("Press 'c' to cancel or any other key to save\n");
     }
-    
-    if (!save()&&!edit)
+    if (!edit)
     {
-        fclose(res);
-        return;
+        if (!save())
+        {
+            fclose(res);
+            return;
+        }
     }
-    
+
     while (fgets(reservation, sizeof(reservation), res))
     {
         customers[i] = separateResLine(reservation);
@@ -173,11 +175,11 @@ void cancel(long id, int edit)
     {
         if (j != deletedLine)
         {
-            fprintf(res, "%ld,%d,%s,%s,%s,%d,%02d-%02d-%02d,%s,%s\n", 
-                   customers[j].reservationID, customers[j].room_id, customers[j].status, 
-                   customers[j].name, customers[j].nationalId, customers[j].numberOfnights, 
-                   customers[j].day, customers[j].month, customers[j].year, 
-                   customers[j].email, customers[j].phone);
+            fprintf(res, "%ld,%d,%s,%s,%s,%d,%02d-%02d-%02d,%s,%s\n",
+                    customers[j].reservationID, customers[j].room_id, customers[j].status,
+                    customers[j].name, customers[j].nationalId, customers[j].numberOfnights,
+                    customers[j].day, customers[j].month, customers[j].year,
+                    customers[j].email, customers[j].phone);
         }
         j++;
     }
@@ -233,7 +235,7 @@ void edit()
         textcolor(LIGHTGRAY);
         return;
     }
-    
+
     printf("Please re enter the new data....\n");
     int newId = RoomReservation(stat, cust.reservationID, cust.nationalId);
     printf("Do you want to save the edits?\n");

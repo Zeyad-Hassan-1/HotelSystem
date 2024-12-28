@@ -251,14 +251,14 @@ int validateCheckIn()
 
         if ((res_ID == customers[i].reservationID || res_ID == customers[i].room_id) && strcmp(customers[i].status, "unconfirmed") == 0)
         {
-            if (current.year == customers[i].year && current.month == customers[i].month && current.day == customers[i].day)
+            if (!(current.year == customers[i].year && current.month == customers[i].month && current.day == customers[i].day))
             {
                 textcolor(YELLOW);
                 system("cls");
                 printCentered("You can't check in for a past reservation",10);
                 textcolor(LIGHTGRAY);
                 return 0;
-            }
+            };
             strcpy(customers[i].status, "confirmed");
             found = 1;
         }
