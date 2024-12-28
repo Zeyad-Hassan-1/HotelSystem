@@ -255,7 +255,7 @@ int validateCheckIn()
             {
                 textcolor(YELLOW);
                 system("cls");
-                printCentered("You can't check in for a past reservation",10);
+                printCentered("You can't check in before the check in date\n",10);
                 textcolor(LIGHTGRAY);
                 return 0;
             };
