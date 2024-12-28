@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
+#include "headerFiles/getDate.h"
 
 int is_valid_email(const char *email)
 {
@@ -19,19 +20,15 @@ int is_valid_email(const char *email)
 
 int is_valid_date(int day, int month, int year)
 {
-    // Get current date
-    time_t t = time(NULL);
-    struct tm *current = localtime(&t);
-    int curr_year = current->tm_year + 1900;
-    int curr_month = current->tm_mon + 1;
-    int curr_day = current->tm_mday;
+    
+    CurrentDate current = getDate();
+    
 
-    // Check if date is in past
-    if (year < curr_year)
+    if (year < current.year)
         return 0;
-    if (year == curr_year && month < curr_month)
+    if (year == current.year && month < current.month)
         return 0;
-    if (year == curr_year && month == curr_month && day < curr_day)
+    if (year == current.year && month == current.month && day < current.day)
         return 0;
 
     // Basic date validation

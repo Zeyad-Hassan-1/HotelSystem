@@ -5,6 +5,7 @@
 #include "./headerFiles/tracking.h"
 #include "./headerFiles/colors.h"
 #include "./headerFiles/reservations.h"
+#include "./headerFiles/Load.h"
 
 void track() {
     system("cls");
@@ -50,37 +51,8 @@ void find_by_name(char *name) {
     int found = 0;
     
     while (fgets(line, 1000, f)) {
-        char *token;
-        token = strtok(line, ",");
-        customer.reservationID = atol(token);
         
-        token = strtok(NULL, ",");
-        customer.room_id = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.status, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.name, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.nationalId, token);
-        
-        token = strtok(NULL, ",");
-        customer.numberOfnights = atoi(token);
-        
-        token = strtok(NULL, "-");
-        customer.day = atoi(token);
-        token = strtok(NULL, "-");
-        customer.month = atoi(token);
-        token = strtok(NULL, ",");
-        customer.year = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.email, token);
-        
-        token = strtok(NULL, "\n");
-        strcpy(customer.phone, token);
+        customer = separateResLine(line);
 
         if (strcasecmp(name, customer.name) == 0) {
             found = 1;
@@ -136,18 +108,7 @@ int find_by_roomID(int rid) {
     int found = 0;
     
     while (fgets(line, 1000, f)) {
-        char *token;
-        token = strtok(line, " ");
-        room.room_id = atoi(token);
-        
-        token = strtok(NULL, " ");
-        strcpy(room.status, token);
-        
-        token = strtok(NULL, " ");
-        strcpy(room.category, token);
-        
-        token = strtok(NULL, "\n");
-        room.price = atoi(token);
+        room = separateRoomLine(line);
 
         if (rid == room.room_id) {
             found = 1;
@@ -173,38 +134,7 @@ int find_by_roomID(int rid) {
 
                 char linec[1000];
                 while (fgets(linec, 1000, fc)) {
-                    char *token;
-                    token = strtok(linec, ",");
-                    customer.reservationID = atol(token);
-                    
-                    token = strtok(NULL, ",");
-                    customer.room_id = atoi(token);
-                    
-                    token = strtok(NULL, ",");
-                    strcpy(customer.status, token);
-                    
-                    token = strtok(NULL, ",");
-                    strcpy(customer.name, token);
-                    
-                    token = strtok(NULL, ",");
-                    strcpy(customer.nationalId, token);
-                    
-                    token = strtok(NULL, ",");
-                    customer.numberOfnights = atoi(token);
-                    
-                    token = strtok(NULL, "-");
-                    customer.day = atoi(token);
-                    token = strtok(NULL, "-");
-                    customer.month = atoi(token);
-                    token = strtok(NULL, ",");
-                    customer.year = atoi(token);
-                    
-                    token = strtok(NULL, ",");
-                    strcpy(customer.email, token);
-                    
-                    token = strtok(NULL, "\n");
-                    strcpy(customer.phone, token);
-
+                    customer = separateResLine(linec);
                     if (rid == customer.room_id) {
                         textcolor(LIGHTGREEN);
                         gotoxy(4, 10);
@@ -262,18 +192,7 @@ void statues_room(char *state) {
     int y = 5;
     
     while (fgets(line, 1000, f)) {
-        char *token;
-        token = strtok(line, " ");
-        room.room_id = atoi(token);
-        
-        token = strtok(NULL, " ");
-        strcpy(room.status, token);
-        
-        token = strtok(NULL, " ");
-        strcpy(room.category, token);
-        
-        token = strtok(NULL, "\n");
-        room.price = atoi(token);
+        room = separateRoomLine(line);
 
         if (strcmp(state, room.status) == 0) {
             textcolor(LIGHTGREEN);
@@ -375,37 +294,7 @@ void check_the_date() {
     int y = 9;
 
     while (fgets(line, 1000, f)) {
-        char *token;
-        token = strtok(line, ",");
-        customer.reservationID = atol(token);
-        
-        token = strtok(NULL, ",");
-        customer.room_id = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.status, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.name, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.nationalId, token);
-        
-        token = strtok(NULL, ",");
-        customer.numberOfnights = atoi(token);
-        
-        token = strtok(NULL, "-");
-        customer.day = atoi(token);
-        token = strtok(NULL, "-");
-        customer.month = atoi(token);
-        token = strtok(NULL, ",");
-        customer.year = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customer.email, token);
-        
-        token = strtok(NULL, "\n");
-        strcpy(customer.phone, token);
+        customer = separateResLine(line);
 
         if (customer.day == day && customer.month == month && customer.year == year) {
             found = 1;

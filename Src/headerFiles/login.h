@@ -10,9 +10,4 @@
 int check_info(char *username,char *password);
 int login();
 
-#endif // LOGIN_H
-
-/*
-
-
-*/
+#endif

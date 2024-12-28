@@ -5,6 +5,20 @@
 #include "./headerFiles/reservations.h"
 #include "./headerFiles/editReservations.h"
 #include "./headerFiles/colors.h"
+#include "./headerFiles/Load.h"
+
+int save()
+{
+    int choose = getch();
+    switch (choose)
+    {
+    case 'c':
+        return 0;
+
+    default:
+        return 1;
+    }
+}
 
 Customer ViewCustomerDetails()
 {
@@ -25,38 +39,7 @@ Customer ViewCustomerDetails()
     while (fgets(line, 200, file))
     {
         Customer csv;
-        char *token;
-        
-        token = strtok(line, ",");
-        csv.reservationID = atol(token);
-        
-        token = strtok(NULL, ",");
-        csv.room_id = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(csv.status, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(csv.name, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(csv.nationalId, token);
-        
-        token = strtok(NULL, ",");
-        csv.numberOfnights = atoi(token);
-        
-        token = strtok(NULL, "-");
-        csv.day = atoi(token);
-        token = strtok(NULL, "-");
-        csv.month = atoi(token);
-        token = strtok(NULL, ",");
-        csv.year = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(csv.email, token);
-        
-        token = strtok(NULL, "\n");
-        strcpy(csv.phone, token);
+        csv = separateResLine(line);
 
         if (id == csv.reservationID || id == csv.room_id)
         {
@@ -91,18 +74,7 @@ int changeRoomStat(int roomId)
     int i = 0, found = 0;
     while (fgets(line, 200, roomFile))
     {
-        char *token;
-        token = strtok(line, " ");
-        rooms[i].room_id = atoi(token);
-        
-        token = strtok(NULL, " ");
-        strcpy(rooms[i].status, token);
-        
-        token = strtok(NULL, " ");
-        strcpy(rooms[i].category, token);
-        
-        token = strtok(NULL, "\n");
-        rooms[i].price = atoi(token);
+        rooms[i] = separateRoomLine(line);
 
         if (rooms[i].room_id == roomId)
         {
@@ -152,39 +124,17 @@ void cancel(long id, int edit)
     char reservation[200];
     Customer customers[200];
     int i = 0;
+    printf("Do you want to confirm the cancellation?\n");
+    printf("Press 'c' to cancel or any other key to save\n");
+    if (!save())
+    {
+        fclose(res);
+        return;
+    }
+    
     while (fgets(reservation, sizeof(reservation), res))
     {
-        char *token;
-        token = strtok(reservation, ",");
-        customers[i].reservationID = atol(token);
-        
-        token = strtok(NULL, ",");
-        customers[i].room_id = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].status, token);
-        
-        token = strtok(NULL, ","); 
-        strcpy(customers[i].name, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].nationalId, token);
-        
-        token = strtok(NULL, ","); 
-        customers[i].numberOfnights = atoi(token);
-        
-        token = strtok(NULL, "-");
-        customers[i].day = atoi(token);
-        token = strtok(NULL, "-");
-        customers[i].month = atoi(token);
-        token = strtok(NULL, ",");
-        customers[i].year = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].email, token);
-        
-        token = strtok(NULL, "\n");
-        strcpy(customers[i].phone, token);
+        customers[i] = separateResLine(reservation);
 
         if ((id == customers[i].reservationID || id == customers[i].room_id))
         {
@@ -242,21 +192,6 @@ void cancel(long id, int edit)
     }
 }
 
-int save()
-{
-    printf("Do you want to save the edits?\n");
-    printf("Press 'c' to cancel or any other key to save\n");
-    int choose = getch();
-    switch (choose)
-    {
-    case 'c':
-        return 0;
-
-    default:
-        return 1;
-    }
-}
-
 void edit()
 {
     long id;
@@ -274,37 +209,7 @@ void edit()
     int found = 0;
     while (fgets(line, 200, res))
     {
-        char *token;
-        token = strtok(line, ",");
-        cust.reservationID = atol(token);
-        
-        token = strtok(NULL, ",");
-        cust.room_id = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(cust.status, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(cust.name, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(cust.nationalId, token);
-        
-        token = strtok(NULL, ","); 
-        cust.numberOfnights = atoi(token);
-        
-        token = strtok(NULL, "-");
-        cust.day = atoi(token);
-        token = strtok(NULL, "-");
-        cust.month = atoi(token);
-        token = strtok(NULL, ",");
-        cust.year = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(cust.email, token);
-        
-        token = strtok(NULL, "\n");
-        strcpy(cust.phone, token);
+        cust = separateResLine(line);
 
         if (id == cust.reservationID || id == cust.room_id)
         {
@@ -327,6 +232,8 @@ void edit()
     
     printf("Please re enter the new data....\n");
     int newId = RoomReservation(stat, cust.reservationID, cust.nationalId);
+    printf("Do you want to save the edits?\n");
+    printf("Press 'c' to cancel or any other key to save\n");
     if (!save())
     {
         cancel(newId, 1);

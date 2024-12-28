@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "./headerFiles/reservations.h"
+#include "./headerFiles/Load.h"
 
 void swap(Customer* xp, Customer* yp) {
     Customer temp = *xp;
@@ -43,36 +44,7 @@ void sort()
     while (fgets(line, sizeof(line), res)) {
         char *token;
         
-        token = strtok(line, ",");
-        customers[i].reservationID = atol(token);
-        
-        token = strtok(NULL, ",");
-        customers[i].room_id = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].status, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].name, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].nationalId, token);
-        
-        token = strtok(NULL, ",");
-        customers[i].numberOfnights = atoi(token);
-        
-        token = strtok(NULL, "-");
-        customers[i].day = atoi(token);
-        token = strtok(NULL, "-");
-        customers[i].month = atoi(token);
-        token = strtok(NULL, ",");
-        customers[i].year = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].email, token);
-        
-        token = strtok(NULL, "\n");
-        strcpy(customers[i].phone, token);
+        customers[i] = separateResLine(line);
 
         customers[i].checkindate = (customers[i].year * 365) + (customers[i].month * 30) + customers[i].day;
         i++;

@@ -62,7 +62,8 @@
     "editreservations.h": "c",
     "validation.h": "c",
     "colors.h": "c",
-    "checkout.h": "c"
+    "checkout.h": "c",
+    "getdate.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

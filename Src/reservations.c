@@ -9,9 +9,10 @@
 #include "./headerFiles/editReservations.h"
 #include "./headerFiles/sorting.h"
 #include "./headerFiles/colors.h"
+#include "./headerFiles/getDate.h"
+#include "./headerFiles/Load.h"
 
-long generateUniqueID()
-{
+long generateUniqueID(){
     time_t now = time(NULL);
     return now % 100000000;
 }
@@ -124,19 +125,8 @@ int RoomReservation(int stat, long resID, char *nId)
     Room room;
     while (fgets(rooms, sizeof(rooms), roomFile))
     {
-        char *token;
-        token = strtok(rooms, " ");
-        room.room_id = atoi(token);
         
-        token = strtok(NULL, " ");
-        strcpy(room.status, token);
-        
-        token = strtok(NULL, " ");
-        strcpy(room.category, token);
-        
-        token = strtok(NULL, "\n");
-        room.price = atoi(token);
-
+        room = separateRoomLine(rooms);
         if (strcmp(room.status, "Available") == 0 && strcmp(room.category, cst.catogary) == 0)
         {
             cst.room_id = room.room_id;
@@ -195,7 +185,7 @@ int RoomReservation(int stat, long resID, char *nId)
             {
                 Room room;
 
-                sscanf(rooms, "%d %s %s %d", &room.room_id, room.status, room.category, &room.price);
+                room = separateRoomLine(rooms);
 
                 if (strcmp(room.status, "Available") == 0 && strcmp(room.category, cst.catogary) == 0)
                 {
@@ -228,12 +218,9 @@ int RoomReservation(int stat, long resID, char *nId)
 int validateCheckIn()
 {
     long res_ID;
-    int d, m, y;
-    
-    printf("Enter the reservation ID: ");
+    CurrentDate current = getDate();
+    printf("Enter the Reservation ID or Room ID: ");
     scanf("%ld", &res_ID);
-    printf("Enter the check-in date (day month year): ");
-    scanf("%d %d %d", &d, &m, &y);
     char line1[200];
     FILE *fptr1 = fopen("output/Reservations.txt", "r");
     if (fptr1 == NULL)
@@ -244,42 +231,27 @@ int validateCheckIn()
 
     int room, found = 0, i = 0;
     Customer customers[200];
+    printf("Do you want to confirm the check in?\n");
+    printf("Press 'c' to cancel or any other key to confirm\n");
+    if (!save())
+    {
+        fclose(fptr1);
+        return 0;
+    }
     while (fgets(line1, sizeof(line1), fptr1))
     {
-        char *token;
-        token = strtok(line1, ",");
-        customers[i].reservationID = atol(token);
-        
-        token = strtok(NULL, ",");
-        customers[i].room_id = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].status, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].name, token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].nationalId, token);
-        
-        token = strtok(NULL, ",");
-        customers[i].numberOfnights = atoi(token);
-        
-        token = strtok(NULL, "-");
-        customers[i].day = atoi(token);
-        token = strtok(NULL, "-");
-        customers[i].month = atoi(token);
-        token = strtok(NULL, ",");
-        customers[i].year = atoi(token);
-        
-        token = strtok(NULL, ",");
-        strcpy(customers[i].email, token);
-        
-        token = strtok(NULL, "\n");
-        strcpy(customers[i].phone, token);
+        customers[i] = separateResLine(line1);
 
-        if (res_ID == customers[i].reservationID && d == customers[i].day && m == customers[i].month && y == customers[i].year)
+        if ((res_ID == customers[i].reservationID || res_ID == customers[i].room_id) && strcmp(customers[i].status, "unconfirmed") == 0)
         {
+            if (current.year == customers[i].year && current.month == customers[i].month && current.day == customers[i].day)
+            {
+                textcolor(YELLOW);
+                system("cls");
+                printCentered("You can't check in for a past reservation",10);
+                textcolor(LIGHTGRAY);
+                return 0;
+            }
             strcpy(customers[i].status, "confirmed");
             found = 1;
         }
