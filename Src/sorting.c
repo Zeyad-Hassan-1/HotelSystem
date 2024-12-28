@@ -33,7 +33,7 @@ void bubbleSort(Customer arr[], int n){
 void sort()
 {
     Customer customers[200];
-    FILE *res = fopen("output/Reservations.txt", "r");
+    FILE *res = fopen("output/reservations.txt", "r");
     if (res == NULL) {
         perror("Error opening file for reading");
         return;
@@ -58,7 +58,7 @@ void sort()
 
     bubbleSort(customers, i);
 
-    res = fopen("output/Reservations.txt", "w");
+    res = fopen("output/reservations.txt", "w");
     if (res == NULL) {
         perror("Error opening file for writing");
         return;

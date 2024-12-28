@@ -37,7 +37,7 @@ void find_by_name(char *name) {
     system("cls");
     Customer customer;
 
-    FILE *f = fopen("output/Reservations.txt", "r");
+    FILE *f = fopen("output/reservations.txt", "r");
     if (f == NULL) {
         printf("error opening file\n\n");
         exit(1);
@@ -126,7 +126,7 @@ int find_by_roomID(int rid) {
             if (strcmp(room.status, "Reserved") == 0) {
                 Customer customer;
 
-                FILE *fc = fopen("output/Reservations.txt", "r");
+                FILE *fc = fopen("output/reservations.txt", "r");
                 if (fc == NULL) {
                     printf("error opening file\n\n");
                     exit(1);
@@ -268,7 +268,7 @@ void check_the_date() {
     system("cls");
     Customer customer;
 
-    FILE *f = fopen("output/Reservations.txt", "r");
+    FILE *f = fopen("output/reservations.txt", "r");
     if (f == NULL) {
         printf("error opening file\n\n");
         exit(1);

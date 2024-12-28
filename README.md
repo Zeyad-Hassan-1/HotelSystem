@@ -44,7 +44,7 @@ gcc main.c Src/*.c -o hotel.exe -I Src/headerFiles
   │  └─📄 sorting.c          # Data sorting and organization utilities
   │
   ├─📁 **output/**           # Data storage directory
-  │  ├─📄 Reservations.txt   # Customer booking records
+  │  ├─📄 reservations.txt   # Customer booking records
   │  ├─📄 Room.txt           # Room details and status
   │  └─📄 users.txt          # User authentication data
   │
@@ -65,7 +65,7 @@ Features:
 Data Organization:
 Room.txt Format
 ```RoomID Status Category Price```
-Reservations.txt Format
+reservations.txt Format
 ```ReservationID,RoomID,Status,Name,NationalID,Nights,Date,Email,Phone```
 Users.txt Format
 ```Username Password```

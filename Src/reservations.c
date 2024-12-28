@@ -112,7 +112,7 @@ int RoomReservation(int stat, long resID, char *nId)
         }
     } while (categoryChoice < 1 || categoryChoice > 3);
 
-    FILE *fptr = fopen("output/Reservations.txt", "a");
+    FILE *fptr = fopen("output/reservations.txt", "a");
     FILE *roomFile = fopen("output/Room.txt", "r");
     if (roomFile == NULL)
     {
@@ -222,7 +222,7 @@ int validateCheckIn()
     printf("Enter the Reservation ID or Room ID: ");
     scanf("%ld", &res_ID);
     char line1[200];
-    FILE *fptr1 = fopen("output/Reservations.txt", "r");
+    FILE *fptr1 = fopen("output/reservations.txt", "r");
     if (fptr1 == NULL)
     {
         printf("Error: Could not open Reservation.txt\n");
@@ -261,7 +261,7 @@ int validateCheckIn()
 
     fclose(fptr1);
 
-    fptr1 = fopen("output/Reservations.txt", "w");
+    fptr1 = fopen("output/reservations.txt", "w");
     int j = 0;
     while (j < i)
     {

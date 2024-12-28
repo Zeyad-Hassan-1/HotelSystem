@@ -28,10 +28,10 @@ Customer ViewCustomerDetails()
     printf("Enter reservation id or room id to view your data..\n");
     textcolor(LIGHTGRAY);
     scanf("%ld", &id);
-    FILE *file = fopen("output/Reservations.txt", "r");
+    FILE *file = fopen("output/reservations.txt", "r");
     if (!file)
     {
-        perror("Error opening Reservations.txt");
+        perror("Error opening reservations.txt");
         exit(EXIT_FAILURE);
     }
     char line[200];
@@ -114,10 +114,10 @@ void cancel(long id, int edit)
 {
     int room_id = 0, found = 0;
     int deletedLine;
-    FILE *res = fopen("output/Reservations.txt", "r");
+    FILE *res = fopen("output/reservations.txt", "r");
     if (!res)
     {
-        perror("Error opening Reservations.txt");
+        perror("Error opening reservations.txt");
         exit(EXIT_FAILURE);
     }
 
@@ -158,10 +158,10 @@ void cancel(long id, int edit)
         return;
     }
 
-    res = fopen("output/Reservations.txt", "w");
+    res = fopen("output/reservations.txt", "w");
     if (!res)
     {
-        perror("Error opening Reservations.txt");
+        perror("Error opening reservations.txt");
         exit(EXIT_FAILURE);
     }
     int j = 0;
@@ -195,10 +195,10 @@ void cancel(long id, int edit)
 void edit()
 {
     long id;
-    FILE *res = fopen("output/Reservations.txt", "r");
+    FILE *res = fopen("output/reservations.txt", "r");
     if (!res)
     {
-        perror("Error opening Reservations.txt");
+        perror("Error opening reservations.txt");
         exit(EXIT_FAILURE);
     }
     printf("Please enter reservation id or room id...\n");

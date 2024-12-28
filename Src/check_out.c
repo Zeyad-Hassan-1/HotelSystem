@@ -11,7 +11,7 @@
 
 void changereservation(int roomId)
 {
-    FILE *reservationFile = fopen("output/Reservations.txt", "r");
+    FILE *reservationFile = fopen("output/reservations.txt", "r");
     if (!reservationFile)
     {
         textcolor(RED);
@@ -35,7 +35,7 @@ void changereservation(int roomId)
     }
     fclose(reservationFile);
 
-    reservationFile = fopen("output/Reservations.txt", "w");
+    reservationFile = fopen("output/reservations.txt", "w");
     int j = 0;
     while (j < i)
     {
@@ -68,7 +68,7 @@ void checkOut()
     printf("Enter the room number to check out: ");
     scanf("%d", &room_number);
 
-    reservationFile = fopen("output/Reservations.txt", "r");
+    reservationFile = fopen("output/reservations.txt", "r");
     if (reservationFile == NULL)
     {
         textcolor(RED);
