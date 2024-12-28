@@ -82,7 +82,6 @@ int login()
             textcolor(GREEN);
             printf("\n\n\t\tLogin Successful!\n");
             textcolor(LIGHTGRAY);
-            Sleep(1000);
             return 1;
         }
         else
@@ -94,7 +93,7 @@ int login()
             textcolor(LIGHTGRAY);
             char ch = getch();
             if (ch == 27) // ESC key
-                return 0;
+                exit(0);
         }
     }
     return 0;

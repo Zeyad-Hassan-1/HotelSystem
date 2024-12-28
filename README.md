@@ -103,5 +103,5 @@ Contributing
 License
 MIT License
 
-Author
+Authors
 [Zeyad Hasan Sadiq]
