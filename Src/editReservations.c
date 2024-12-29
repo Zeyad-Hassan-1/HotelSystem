@@ -243,13 +243,14 @@ void edit()
     if (!save())
     {
         cancel(newId, 1);
+        cancel(cust.reservationID,1);
         textcolor(RED);
         printf("Edits not saved\n");
         textcolor(LIGHTGRAY);
     }
     else
     {
-        cancel(id, 1);
+        cancel(cust.room_id, 1);
         textcolor(RED);
         printf("Edits saved successfully\n");
         textcolor(LIGHTGRAY);
