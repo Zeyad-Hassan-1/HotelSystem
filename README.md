@@ -100,8 +100,5 @@ Contributing
   Push to branch
   Create Pull Request
 
-License
-MIT License
-
 Authors
 [Zeyad Hasan Sadiq]
